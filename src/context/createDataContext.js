@@ -8,8 +8,14 @@ export default (reducer, actions, initialState ) => {
         const [state , dispatch] = useReducer(reducer, initialState);
 
         // actions === { addBlogPost: (dispatch => { return () => {} }}
+        const boundActions = {};
+        for (let key in actions) {
+            boundActions[key] = actions[key](dispatch);
+        }
 
-        return <Context.Provider value={{ state }}>
+
+
+        return <Context.Provider value={{ state, ...boundActions }}>
             {children}
         </Context.Provider>
     }
