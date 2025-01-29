@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { Provider } from './src/context/BlogContext';
+import ShowScreen from './src/screens/ShowScreen';
+import CreateScreen from './src/screens/CreateScreen';
 
 
 
@@ -16,6 +18,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Blog">
           <Stack.Screen name="Blog" component={IndexScreen} />
+          <Stack.Screen name="Show" component={ShowScreen} />
+          <Stack.Screen name="Create" component={CreateScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
