@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, FlatList, Button } from "react-native";
+import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from "react-native";
 import { Context } from "../context/BlogContext";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 
 const IndexScreen = () => {
-    const { state, addBlogPost } = useContext(Context)
+    const { state, addBlogPost, deleteBlogPost } = useContext(Context)
 
     return <View>
         <Button title="Add Post" onPress={addBlogPost}/>
@@ -14,15 +14,22 @@ const IndexScreen = () => {
         data={state}
         keyExtractor={(blogPosts) => blogPosts.title}
         renderItem={({item}) => {
-            return <View style={styles.row}> 
-                <Text style={styles.title}> {item.title}</Text>
-                <MaterialCommunityIcons name="delete" style={styles.icon} />
+            return (
+            <View style={styles.row}> 
+                <Text style={styles.title}>
+                     {item.title} - {item.id}
+                     </Text>
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                    <MaterialCommunityIcons name="delete" style={styles.icon}/>
+                </TouchableOpacity>
+                 
             </View>
+            );
         }}
         />
-    
     </View>
-}
+    
+};
 
 const styles = StyleSheet.create({
     row: {
