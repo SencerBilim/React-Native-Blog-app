@@ -1,13 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from "react-native";
 import { Context } from "../context/BlogContext";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import ShowScreen from "./ShowScreen";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 
 
 const IndexScreen = ({navigation}) => {
     const { state, addBlogPost, deleteBlogPost } = useContext(Context)
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+                    <AntDesign name="plus" size={24} color="black" style={{ marginRight: 15 }} />
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
 
     return <View>
         <Button title="Add Post" onPress={addBlogPost}/>
@@ -34,6 +45,12 @@ const IndexScreen = ({navigation}) => {
     </View>
     
 };
+
+
+IndexScreen.navigationOptions = () => {}
+
+
+
 
 const styles = StyleSheet.create({
     row: {
