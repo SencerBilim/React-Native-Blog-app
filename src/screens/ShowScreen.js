@@ -11,7 +11,7 @@ const ShowScreen = ({ route, navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Edit", { id: route.params?.id})}>
                     <AntDesign name="edit" size={24} color="black" style={{ marginRight: 15 }} />
                 </TouchableOpacity>
             ),

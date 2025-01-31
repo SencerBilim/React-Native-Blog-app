@@ -1,12 +1,25 @@
-import React from "react";
-import { View, Text, StyleSheet} from "react-native";
+import { Context } from "../context/BlogContext";
+import { View, Text, StyleSheet, TextInput} from "react-native";
+import React, { useContext, useState } from "react";
 
 
-const EditScreen = () => {
+const EditScreen = ( { route }) => {
+
+    const { state } = useContext(Context);
+
+    const blogPost = state.find((blogPost) => blogPost.id === route.params?.id);
    
+    const [title, setTitle] = useState(blogPost.title);
+    const [content, setContent] = useState(blogPost.content);
+
+
+
     return (
     <View>
-        <Text style={styles.label}> Selam </Text>
+        <Text style={styles.label}> Edit Title:</Text>
+        <TextInput value={title} onChangeText={(newTitle) => setTitle(newTitle)}/>
+        <Text style={styles.label}> Edit Content: </Text>
+        <TextInput value={content} onChangeText={(newContent) => setContent(newContent)}/>
         
     </View>
 )}
