@@ -1,7 +1,7 @@
 import { Context } from "../context/BlogContext";
-import { View, Text, StyleSheet, TextInput} from "react-native";
-import React, { useContext, useState } from "react";
-
+import { StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import BlogPostForm from "../components/BlogPostForm";
 
 const EditScreen = ( { route }) => {
 
@@ -9,20 +9,15 @@ const EditScreen = ( { route }) => {
 
     const blogPost = state.find((blogPost) => blogPost.id === route.params?.id);
    
-    const [title, setTitle] = useState(blogPost.title);
-    const [content, setContent] = useState(blogPost.content);
 
 
 
-    return (
-    <View>
-        <Text style={styles.label}> Edit Title:</Text>
-        <TextInput value={title} onChangeText={(newTitle) => setTitle(newTitle)}/>
-        <Text style={styles.label}> Edit Content: </Text>
-        <TextInput value={content} onChangeText={(newContent) => setContent(newContent)}/>
+
+    return <BlogPostForm onSubmit={() => {
         
-    </View>
-)}
+    }} />
+
+}
 
 
 
