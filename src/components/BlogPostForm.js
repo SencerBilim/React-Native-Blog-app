@@ -2,10 +2,13 @@ import { View, Text, StyleSheet, TextInput, Button} from "react-native";
 import React, { useContext, useState } from "react";
 
 
-const BlogPostForm = ({ onSubmit }) => {
+const BlogPostForm = ({
+    onSubmit,
+    initialValues = { title: "", content: "" },
+  }) => {
 
-    const [title , setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const [title , setTitle] = useState(initialValues.title);
+    const [content, setContent] = useState(initialValues.content);
 
     return (
         <View>
